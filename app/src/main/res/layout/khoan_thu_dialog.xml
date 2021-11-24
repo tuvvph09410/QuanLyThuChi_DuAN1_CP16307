@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFDFD"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#03A9F4"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Thêm Khoản Thu"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ID:"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tV_idKT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:textColor="#000"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+
+    <Spinner
+        android:id="@+id/sp_TypeIDLT"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#FAF8F8"
+        android:hint="Chọn Loại Thu"
+        />
+
+    <EditText
+        android:id="@+id/ed_nameKT"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#FAF8F8"
+        android:hint="Tên khoản thu"
+android:textStyle="bold"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/ed_amountKT"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#FAF8F8"
+        android:hint="Số tiền khoản thu"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/ed_dateKT"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#FAF8F8"
+        android:hint="chọn ngày khoản thu"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        />
+
+
+    <EditText
+        android:id="@+id/ed_noteKT"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#FAF8F8"
+        android:hint="Ghi chú"
+        android:inputType="textMultiLine"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_thu"
+            android:icon="@drawable/ic_baseline_attach_money_24"
+            android:title="@string/nav_khoan_thu" />
+
+        <item
+            android:id="@+id/nav_chi"
+            android:icon="@drawable/ic_baseline_money_off_24"
+            android:title="@string/nav_khoan_chi" />
+
+        <item
+            android:id="@+id/nav_thongke"
+            android:icon="@drawable/ic_baseline_filter_list_24"
+            android:title="@string/nav_thong_ke" />
+    </group>
+
+
+    <item android:title="@string/nav_exit">
+
+        <menu>
+            <item
+                android:id="@+id/nav_thoat"
+                android:icon="@drawable/ic_baseline_exit_to_app_24"
+                android:title="@string/nav_thoat" />
+        </menu>
+
+    </item>
+</menu>

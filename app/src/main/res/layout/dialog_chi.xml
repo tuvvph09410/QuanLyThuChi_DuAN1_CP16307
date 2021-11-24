@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#03A9F4"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Thêm Khoản Chi"
+        android:textColor="#0C0C0C"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/ed_dia_ten_khoan_chi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FAF8F8"
+        android:hint="Nhập khoản chi"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/ed_dia_loai_chi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FAF8F8"
+        android:hint="Nhập loại chi"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/ed_dia_ngay_chi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FAF8F8"
+        android:hint="Nhập ngày chi"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/ed_dia_ghi_chu_khoan_chi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FAF8F8"
+        android:hint="Ghi chú"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btn_save_new_khoan_chi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="#FFEB3B"
+        android:text="Lưu" />
+</LinearLayout>

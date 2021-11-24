@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#03A9F4">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Đăng Ký"
+        android:textSize="40dp"
+        android:layout_margin="30dp"
+        android:textColor="#F4F3F3"/>
+
+    <EditText
+        android:id="@+id/ed_add_register_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F6F4F4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nhập Name"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/ed_add_register_user"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F6F4F4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nhập username"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/ed_add_register_pass"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F6F4F4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nhập password"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/ed_add_register_email"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F6F4F4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nhập email"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/ed_add_register_sdt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F6F4F4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nhập số điện thoại "
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:inputType="number"
+        />
+    <EditText
+        android:id="@+id/ed_add_register_date"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F6F4F4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nhập ngày sinh "
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        />
+    <Button
+        android:id="@+id/btn_save_add_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng ký"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="#FFEB3B"/>
+</LinearLayout>
