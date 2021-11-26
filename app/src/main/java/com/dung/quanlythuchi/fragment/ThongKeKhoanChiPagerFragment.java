@@ -125,41 +125,47 @@ public class ThongKeKhoanChiPagerFragment extends Fragment {
         this.btn_TKChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Date toDateThu=calendarToDate.getTime();
-            Date fromDateThu=calendarFromDate.getTime();
-            if (edToDate.getText().length() == 0 || edFromDate.getText().length() == 0){
-                Toast.makeText(getContext(), "Bạn chưa chọn ngày", Toast.LENGTH_SHORT).show();
+                Date toDateThu = calendarToDate.getTime();
+                Date fromDateThu = calendarFromDate.getTime();
+                if (edToDate.getText().length() == 0 || edFromDate.getText().length() == 0) {
+                    Toast.makeText(getContext(), "Bạn chưa chọn ngày", Toast.LENGTH_SHORT).show();
 
-            }else {
-                Long toDateLong=toDateThu.getTime();
-                Long fromDateLong=fromDateThu.getTime();
+                } else {
+                    Long toDateLong = toDateThu.getTime();
+                    Long fromDateLong = fromDateThu.getTime();
 
-                thongKeChiViewModel =new ViewModelProvider(ThongKeKhoanChiPagerFragment.this,new ThongKeChiViewModelFactory(getActivity().getApplication(),toDateLong,fromDateLong)).get(ThongKeChiViewModel.class);
-                thongKeChiViewModel.getAllTotalDateKhoanChi().observe(getActivity(), new Observer<Float>() {
-                    @Override
-                    public void onChanged(Float aFloat) {
-                        edTotalChi.setText(String.valueOf(aFloat));
-                    }
-                });
-                thongKeChiRecyclerViewApdater = new ThongKeChiRecyclerViewApdater(getActivity());
-                rvChi.setLayoutManager(new LinearLayoutManager(getActivity()));
-                rvChi.setAdapter(thongKeChiRecyclerViewApdater);
-                thongKeChiViewModel.getAllDateKhoanChi().observe(getActivity(), new Observer<List<KhoanChi>>() {
-                    @Override
-                    public void onChanged(List<KhoanChi> khoanChis) {
-                        thongKeChiRecyclerViewApdater.setList(khoanChis);
-                    }
-                });
-                thongKeChiRecyclerViewApdater.setOnItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onItemClick(int position) {
-                        KhoanChi khoanChi=thongKeChiRecyclerViewApdater.getItem(position);
-                        KhoanChiDetailDialog khoanChiDetailDialog=new KhoanChiDetailDialog(getActivity(),khoanChi);
-                        khoanChiDetailDialog.showDialog();
-                    }
-                });
-            }
+
+                    thongKeChiViewModel.getAllTotalDateKhoanChi(toDateLong, fromDateLong).observe(getActivity(), new Observer<Float>() {
+                        @Override
+                        public void onChanged(Float aFloat) {
+                            edTotalChi.setText(String.valueOf(aFloat));
+                        }
+                    });
+                    thongKeChiRecyclerViewApdater = new ThongKeChiRecyclerViewApdater(getActivity());
+                    rvChi.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    rvChi.setAdapter(thongKeChiRecyclerViewApdater);
+                    thongKeChiViewModel.getAllDateKhoanChi(toDateLong, fromDateLong).observe(getActivity(), new Observer<List<KhoanChi>>() {
+                        @Override
+                        public void onChanged(List<KhoanChi> khoanChis) {
+                            thongKeChiRecyclerViewApdater.setList(khoanChis);
+                        }
+                    });
+                    thongKeChiRecyclerViewApdater.setOnItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onItemClick(int position) {
+                            KhoanChi khoanChi = thongKeChiRecyclerViewApdater.getItem(position);
+                            KhoanChiDetailDialog khoanChiDetailDialog = new KhoanChiDetailDialog(getActivity(), khoanChi);
+                            khoanChiDetailDialog.showDialog();
+                        }
+                    });
+                }
             }
         });
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        thongKeChiViewModel = new ViewModelProvider(ThongKeKhoanChiPagerFragment.this).get(ThongKeChiViewModel.class);
     }
 }

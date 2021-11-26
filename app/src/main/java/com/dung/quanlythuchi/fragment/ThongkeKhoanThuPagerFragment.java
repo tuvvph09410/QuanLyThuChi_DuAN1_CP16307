@@ -73,11 +73,7 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_thongke_khoan_thu_pager, container, false);
-        this.edToDateThu = view.findViewById(R.id.ed_DateTuThu);
-        this.edFromDateThu = view.findViewById(R.id.ed_DateDenThu);
-        this.edTotalThu = view.findViewById(R.id.ed_TongThu);
-        this.rvThu = view.findViewById(R.id.rv_TongThu);
-        this.btnTKThu = view.findViewById(R.id.btn_TKThu);
+
         return view;
     }
 
@@ -86,7 +82,11 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-
+        this.edToDateThu = view.findViewById(R.id.ed_DateTuThu);
+        this.edFromDateThu = view.findViewById(R.id.ed_DateDenThu);
+        this.edTotalThu = view.findViewById(R.id.ed_TongThu);
+        this.rvThu = view.findViewById(R.id.rv_TongThu);
+        this.btnTKThu = view.findViewById(R.id.btn_TKThu);
 
         Calendar calendarToDate = Calendar.getInstance();
 
@@ -154,8 +154,8 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
 
 
 //                    Log.d("Time", toDateLong + " ----- " + fromDateLong);
-                    thongKeThuViewModel = new ViewModelProvider(ThongkeKhoanThuPagerFragment.this, new ThongKeThuViewModelFactory(getActivity().getApplication(), toDateLong, fromDateLong)).get(ThongKeThuViewModel.class);
-                    thongKeThuViewModel.getAllAmountKhoanThu().observe(getActivity(), new Observer<Float>() {
+
+                    thongKeThuViewModel.getAllAmountKhoanThu( toDateLong, fromDateLong).observe(getActivity(), new Observer<Float>() {
                         @Override
                         public void onChanged(Float floats) {
 
@@ -170,7 +170,7 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
                     rvThu.setLayoutManager(new LinearLayoutManager(getActivity()));
                     rvThu.setAdapter(thongKeThuRecyclerViewApdater);
 
-                    thongKeThuViewModel.getAllListDateTKThu().observe(getActivity(), new Observer<List<KhoanThu>>() {
+                    thongKeThuViewModel.getAllListDateTKThu( toDateLong, fromDateLong).observe(getActivity(), new Observer<List<KhoanThu>>() {
                         @Override
                         public void onChanged(List<KhoanThu> khoanThus) {
                             thongKeThuRecyclerViewApdater.setList(khoanThus);
@@ -193,5 +193,9 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
 
     }
 
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        thongKeThuViewModel = new ViewModelProvider(ThongkeKhoanThuPagerFragment.this).get(ThongKeThuViewModel.class);
+    }
 }

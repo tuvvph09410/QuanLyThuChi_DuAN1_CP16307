@@ -15,19 +15,18 @@ public class ThongKeChiViewModel extends AndroidViewModel {
     private KhoanChiRepository mkhoanChiRepository;
     private LiveData<Float> mGetAllTotalDateKhoanChi;
     private LiveData<List<KhoanChi>> mGetAllDateKhoanChi;
-    public ThongKeChiViewModel(@NonNull Application application,Long toDate,Long fromDate) {
+    public ThongKeChiViewModel(@NonNull Application application) {
         super(application);
         this.mkhoanChiRepository=new KhoanChiRepository(application);
-        this.mGetAllTotalDateKhoanChi=mkhoanChiRepository.getAllTotalDateKhoanChi(toDate,fromDate);
-        this.mGetAllDateKhoanChi=mkhoanChiRepository.getAllDateKhoanChi(toDate,fromDate);
+
 
     }
 
-    public LiveData<Float> getAllTotalDateKhoanChi() {
-        return mGetAllTotalDateKhoanChi;
+    public LiveData<Float> getAllTotalDateKhoanChi(Long toDate,Long fromDate) {
+        return mkhoanChiRepository.getAllTotalDateKhoanChi(toDate,fromDate);
     }
 
-    public LiveData<List<KhoanChi>> getAllDateKhoanChi() {
-        return mGetAllDateKhoanChi;
+    public LiveData<List<KhoanChi>> getAllDateKhoanChi(Long toDate,Long fromDate) {
+        return mkhoanChiRepository.getAllDateKhoanChi(toDate,fromDate);
     }
 }

@@ -20,18 +20,18 @@ public class ThongKeThuViewModel extends AndroidViewModel {
 
 
 
-    public ThongKeThuViewModel(@NonNull Application application, Long toDate, Long fromDate) {
+    public ThongKeThuViewModel(@NonNull Application application) {
         super(application);
         this.khoanThuRepository = new KhoanThuRepository(application);
-        this.mGetAllAmountKhoanThu = this.khoanThuRepository.getAllAmountKhoanThu(toDate, fromDate);
-        this.getListTKThu =this.khoanThuRepository.getListTkThu(toDate,fromDate);
+//        this.mGetAllAmountKhoanThu = this.khoanThuRepository.getAllAmountKhoanThu(toDate, fromDate);
+//        this.getListTKThu =this.khoanThuRepository.getListTkThu(toDate,fromDate);
     }
 
-    public LiveData<Float> getAllAmountKhoanThu() {
-        return this.mGetAllAmountKhoanThu;
+    public LiveData<Float> getAllAmountKhoanThu( Long toDate, Long fromDate) {
+        return this.khoanThuRepository.getAllAmountKhoanThu(toDate, fromDate);
     }
 
-    public LiveData<List<KhoanThu>> getAllListDateTKThu() {
-        return this.getListTKThu;
+    public LiveData<List<KhoanThu>> getAllListDateTKThu(Long toDate, Long fromDate) {
+        return this.khoanThuRepository.getListTkThu(toDate,fromDate);
     }
 }
