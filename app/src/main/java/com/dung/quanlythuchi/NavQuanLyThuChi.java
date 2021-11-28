@@ -50,9 +50,9 @@ public class NavQuanLyThuChi extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        replaceFragment(new ThongKeFragment());
+        replaceFragment(new ThuFragment());
         //xét fragment chi đang là fragment đc chọn
-        navigationView.getMenu().findItem(R.id.nav_thongke).setChecked(true);
+        navigationView.getMenu().findItem(R.id.nav_thu).setChecked(true);
     }
 
     @Override

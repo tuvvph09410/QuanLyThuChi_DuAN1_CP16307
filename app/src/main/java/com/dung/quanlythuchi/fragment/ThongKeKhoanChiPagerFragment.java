@@ -138,7 +138,12 @@ public class ThongKeKhoanChiPagerFragment extends Fragment {
                     thongKeChiViewModel.getAllTotalDateKhoanChi(toDateLong, fromDateLong).observe(getActivity(), new Observer<Float>() {
                         @Override
                         public void onChanged(Float aFloat) {
-                            edTotalChi.setText(String.valueOf(aFloat));
+                            if (aFloat == null) {
+                                edTotalChi.setText("không có khoản tiền chi");
+                            }else {
+                                edTotalChi.setText(String.valueOf(aFloat));
+                            }
+
                         }
                     });
                     thongKeChiRecyclerViewApdater = new ThongKeChiRecyclerViewApdater(getActivity());

@@ -52,7 +52,7 @@ public class KhoanChiRecyclerViewAdapter extends RecyclerView.Adapter<KhoanChiRe
     public void onBindViewHolder(@NonNull KhoanChiViewHolder holder, int position) {
         if (this.khoanChiList != null) {
             holder.tvNameKC.setText(this.khoanChiList.get(position).getNameKC());
-            holder.tvTienKC.setText(this.khoanChiList.get(position).getTienKC().toString()+ " Đồng");
+            holder.tvTienKC.setText(this.khoanChiList.get(position).getTienKC()+ " Đồng");
             holder.position = position;
         }
     }

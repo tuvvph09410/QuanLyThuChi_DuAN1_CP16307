@@ -155,11 +155,16 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
 
 //                    Log.d("Time", toDateLong + " ----- " + fromDateLong);
 
-                    thongKeThuViewModel.getAllAmountKhoanThu( toDateLong, fromDateLong).observe(getActivity(), new Observer<Float>() {
+                    thongKeThuViewModel.getAllAmountKhoanThu(toDateLong, fromDateLong).observe(getActivity(), new Observer<Float>() {
                         @Override
                         public void onChanged(Float floats) {
 
-                            edTotalThu.setText(String.valueOf(floats));
+                            if (floats == null) {
+                                edTotalThu.setText("không có khoản tiền thu");
+                            } else {
+                                edTotalThu.setText(String.valueOf(floats));
+                            }
+
 
                         }
 
@@ -170,7 +175,7 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
                     rvThu.setLayoutManager(new LinearLayoutManager(getActivity()));
                     rvThu.setAdapter(thongKeThuRecyclerViewApdater);
 
-                    thongKeThuViewModel.getAllListDateTKThu( toDateLong, fromDateLong).observe(getActivity(), new Observer<List<KhoanThu>>() {
+                    thongKeThuViewModel.getAllListDateTKThu(toDateLong, fromDateLong).observe(getActivity(), new Observer<List<KhoanThu>>() {
                         @Override
                         public void onChanged(List<KhoanThu> khoanThus) {
                             thongKeThuRecyclerViewApdater.setList(khoanThus);

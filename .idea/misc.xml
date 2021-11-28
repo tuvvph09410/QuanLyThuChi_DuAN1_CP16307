@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/ic_baseline_money_off_24.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/drawable/tab_indicator.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/activity_nav_quan_ly_thu_chi.xml" value="0.20948616600790515" />
         <entry key="app/src/main/res/layout/dialog_chi.xml" value="0.11803444782168186" />
         <entry key="app/src/main/res/layout/dialog_detail_khoanchi.xml" value="0.335" />
         <entry key="app/src/main/res/layout/dialog_detail_loaichi.xml" value="0.335" />

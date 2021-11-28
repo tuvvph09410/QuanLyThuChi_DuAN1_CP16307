@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ public class LoaiThuDialog {
     private LoaiThuViewModel loaiThuViewModel;
 
     private LayoutInflater layoutInflaterThu;
-    private AlertDialog dialog;
+    private AlertDialog mDialog;
 
     private EditText edName;
     private boolean EditMode;
@@ -56,27 +57,40 @@ public class LoaiThuDialog {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Lưu", null);
+        mDialog = builder.create();
+        mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveButton =mDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
+                        if (edName.length() != 0){
+                            String nameLT = edName.getText().toString();
+                            LoaiThu loaiThu = new LoaiThu(nameLT);
+                            if (EditMode) {
+                                loaiThu.setIdLT(Integer.parseInt(tvLT.getText().toString()));
+                                loaiThuViewModel.update(loaiThu);
+                                Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            } else {
+                                loaiThuViewModel.insert(loaiThu);
+                                Toast.makeText(context, "Lưu thành công", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
 
-                        String nameLT = edName.getText().toString();
-                        LoaiThu loaiThu = new LoaiThu(nameLT);
-                        if (EditMode) {
-                            loaiThu.setIdLT(Integer.parseInt(tvLT.getText().toString()));
-                            loaiThuViewModel.update(loaiThu);
-                            Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
-                        } else {
-                            loaiThuViewModel.insert(loaiThu);
-                            Toast.makeText(context, "Lưu thành công", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(context, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 });
-        dialog = builder.create();
+            }
+        });
     }
 
     public void showDialog() {
-        dialog.show();
+        mDialog.show();
     }
 }
