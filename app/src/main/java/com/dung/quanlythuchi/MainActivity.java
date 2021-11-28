@@ -47,11 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 boolean res = userDAO.kiemTraLogin(userName, passWord);
                 if (res) {
                     Intent intent = new Intent(MainActivity.this, NavQuanLyThuChi.class);
+                    intent.putExtra("userName", userName);
                     startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }
-               // sendDataFragment();
+                // sendDataFragment();
             }
         });
         btnRegister.setOnClickListener(new View.OnClickListener() {

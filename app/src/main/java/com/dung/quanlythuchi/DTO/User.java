@@ -1,8 +1,13 @@
 package com.dung.quanlythuchi.DTO;
 
+import java.util.Date;
+
 public class User {
-    int idUser;
-    String name, userName, passWord, email, soDT, date;
+    private int idUser;
+    private String name, userName, passWord, email;
+    private int soDT;
+    private Date date;
+
 
     public static final String TB_NAME = "tb_user";
     public static final String COL_ID = "id_user";
@@ -14,7 +19,7 @@ public class User {
     public static final String COL_DATE = "date";
 
 
-    public User(int idUser, String name, String userName, String passWord, String email, String soDT, String date) {
+    public User(int idUser, String name, String userName, String passWord, String email, int soDT, Date date) {
         this.idUser = idUser;
         this.name = name;
         this.userName = userName;
@@ -67,19 +72,19 @@ public class User {
         this.email = email;
     }
 
-    public String getSoDT() {
+    public int getSoDT() {
         return soDT;
     }
 
-    public void setSoDT(String soDT) {
+    public void setSoDT(int soDT) {
         this.soDT = soDT;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

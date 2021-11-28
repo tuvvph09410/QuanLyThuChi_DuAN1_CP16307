@@ -12,7 +12,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import com.dung.quanlythuchi.DAO.UserDAO;
 import com.dung.quanlythuchi.fragment.ChiFragment;
 import com.dung.quanlythuchi.fragment.ThongKeFragment;
 import com.dung.quanlythuchi.fragment.ThuFragment;
@@ -21,11 +24,11 @@ import com.google.android.material.navigation.NavigationView;
 
 public class NavQuanLyThuChi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private UserDAO userDAO;
     private static final int FRAGMENT_THU = 0;
     private static final int FRAGMENT_CHI = 1;
     private static final int FRAGMENT_THONG_KE = 2;
-   // private static final int FRAGMENT_TAI_KHOAN = 3;
+    // private static final int FRAGMENT_TAI_KHOAN = 3;
 
     private int mCurrentFragment = FRAGMENT_THU;//biến để check fragment hiện tại
     private DrawerLayout drawerLayout;
@@ -34,8 +37,12 @@ public class NavQuanLyThuChi extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_quan_ly_thu_chi);
+        userDAO = new UserDAO(NavQuanLyThuChi.this);
+        userDAO.openDB();
 // thêm toolbar và bắt sự kiện khi ấn vào nút 3 gạch
         drawerLayout = findViewById(R.id.drawer_layout);
+        Intent intent = getIntent();
+        Bundle userName = intent.getExtras();
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -48,6 +55,16 @@ public class NavQuanLyThuChi extends AppCompatActivity implements NavigationView
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        TextView name = header.findViewById(R.id.tv_username_header);
+        TextView email = header.findViewById(R.id.tv_email_header);
+        if (intent != null) {
+            String nameText = (String) userName.get("userName");
+            userDAO.getEmail(nameText).getEmail();
+
+            name.setText(nameText);
+            email.setText(userDAO.getEmail(nameText).getEmail());
+        }
 
 
         replaceFragment(new ThuFragment());
@@ -59,7 +76,7 @@ public class NavQuanLyThuChi extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_thu) {
-            if (mCurrentFragment !=FRAGMENT_THU) {
+            if (mCurrentFragment != FRAGMENT_THU) {
                 replaceFragment(new ThuFragment());
                 mCurrentFragment = FRAGMENT_THU;
             }

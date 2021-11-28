@@ -8,14 +8,20 @@ import android.database.sqlite.SQLiteDatabase;
 import com.dung.quanlythuchi.DTO.User;
 import com.dung.quanlythuchi.database.MyDBHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class UserDAO {
     SQLiteDatabase db;
     MyDBHelper myDBHelper;
+    SimpleDateFormat simpleDateFormat;
 
     public UserDAO(Context context) {
         myDBHelper = new MyDBHelper(context);
+        simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
     }
 
     public void openDB() {
@@ -33,7 +39,7 @@ public class UserDAO {
         values.put(User.COL_PASS, objUser.getPassWord());
         values.put(User.COL_EMAIL, objUser.getEmail());
         values.put(User.COL_PHONE, objUser.getSoDT());
-        values.put(User.COL_DATE, objUser.getDate());
+        values.put(User.COL_DATE, simpleDateFormat.format(objUser.getDate()));
 
         long res = db.insert(User.TB_NAME, null, values);
         return res;
@@ -47,7 +53,7 @@ public class UserDAO {
         values.put(User.COL_PASS, objUser.getPassWord());
         values.put(User.COL_EMAIL, objUser.getEmail());
         values.put(User.COL_PHONE, objUser.getSoDT());
-        values.put(User.COL_DATE, objUser.getDate());
+        values.put(User.COL_DATE, simpleDateFormat.format(objUser.getDate()));
         int res = db.update(User.TB_NAME, values, "id_user=?", mang_tham_so);
         return res;
     }
@@ -69,6 +75,20 @@ public class UserDAO {
         }
     }
 
+    public User getEmail(String username) {
+
+        String selectEmail = "SELECT * FROM " + User.TB_NAME + " WHERE " + User.COL_USERNAME + " = '" + username
+                + "' ";
+        Cursor cursor = db.rawQuery(selectEmail, null);
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false) {
+        User user=new User();
+            user.setEmail(cursor.getString(cursor.getColumnIndex(User.COL_EMAIL)));
+            return user;
+        }
+        return null;
+    }
+
     public ArrayList<User> selectAll() {
         ArrayList<User> arrUser = new ArrayList<User>();
         String[] ds_cot = new String[]{"*"};
@@ -81,8 +101,13 @@ public class UserDAO {
                 objUser.setUserName(cursor.getString(2));
                 objUser.setPassWord(cursor.getString(3));
                 objUser.setEmail(cursor.getString(4));
-                objUser.setSoDT(cursor.getString(5));
-                objUser.setDate(cursor.getString(6));
+                objUser.setSoDT(Integer.parseInt(cursor.getString(5)));
+
+                try {
+                    objUser.setDate(simpleDateFormat.parse(cursor.getString(6)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 arrUser.add(objUser);
                 cursor.moveToNext();

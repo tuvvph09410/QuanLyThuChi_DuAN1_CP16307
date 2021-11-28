@@ -19,7 +19,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String create_tb_user = "CREATE TABLE tb_user ( id_user INTEGER NOT NULL, name TEXT NOT NULL, username TEXT NOT NULL, pass TEXT NOT NULL, email TEXT NOT NULL, sodt TEXT NOT NULL, date TEXT NOT NULL, PRIMARY KEY(id_user AUTOINCREMENT) )";
+        String create_tb_user = "CREATE TABLE tb_user ( id_user INTEGER NOT NULL, name TEXT NOT NULL, username TEXT NOT NULL, pass TEXT NOT NULL, email TEXT NOT NULL, sodt INTERGER NOT NULL, date DATE NOT NULL, PRIMARY KEY(id_user AUTOINCREMENT) )";
         sqLiteDatabase.execSQL(create_tb_user);
         Log.d("zzzzz", "gọi đến hàm tạo bảng user");
     }
