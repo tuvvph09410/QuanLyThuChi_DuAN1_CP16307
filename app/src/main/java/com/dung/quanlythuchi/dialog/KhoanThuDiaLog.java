@@ -32,6 +32,7 @@ import com.dung.quanlythuchi.fragment.KhoanChiViewModel;
 import com.dung.quanlythuchi.fragment.KhoanThuViewModel;
 import com.dung.quanlythuchi.fragment.LoaiChiViewModel;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -97,7 +98,9 @@ public class KhoanThuDiaLog {
         if (khoanThu != null && khoanThu.length > 0) {
             tv_idKT.setText("" + khoanThu[0].getIdKT());
             ed_nameKT.setText(khoanThu[0].getNameKT());
-            ed_amountKT.setText("" + khoanThu[0].getTienKT());
+            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+            ed_amountKT.setText("" + decimalFormat.format(khoanThu[0].getTienKT()));
+
             ed_dateKT.setText(simpleDateFormat.format(khoanThu[0].getDateKT()));
             ed_noteKT.setText(khoanThu[0].getNoteKT());
 
@@ -150,9 +153,11 @@ public class KhoanThuDiaLog {
                                     khoanThu.setIdKT(Integer.parseInt(tv_idKT.getText().toString()));
                                     khoanThuViewModel.update(khoanThu);
                                     Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
                                 } else {
                                     khoanThuViewModel.insert(khoanThu);
                                     Toast.makeText(context, "Lưu thành công", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
                                 }
                             } catch (NumberFormatException e) {
                                 e.printStackTrace();

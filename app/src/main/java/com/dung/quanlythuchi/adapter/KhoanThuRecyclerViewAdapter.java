@@ -15,6 +15,7 @@ import com.dung.quanlythuchi.DTO.KhoanChi;
 import com.dung.quanlythuchi.DTO.KhoanThu;
 import com.dung.quanlythuchi.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class KhoanThuRecyclerViewAdapter extends RecyclerView.Adapter<KhoanThuRecyclerViewAdapter.KhoanThuViewHolder> {
@@ -53,7 +54,8 @@ public class KhoanThuRecyclerViewAdapter extends RecyclerView.Adapter<KhoanThuRe
     public void onBindViewHolder(@NonNull KhoanThuViewHolder holder, int position) {
         if (this.khoanThuList != null) {
             holder.tvNameKT.setText(this.khoanThuList.get(position).getNameKT());
-            holder.tvTienKT.setText(this.khoanThuList.get(position).getTienKT().toString()+ " Đồng");
+            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+            holder.tvTienKT.setText(decimalFormat.format(this.khoanThuList.get(position).getTienKT())+ " Đồng");
             holder.position = position;
         }
     }

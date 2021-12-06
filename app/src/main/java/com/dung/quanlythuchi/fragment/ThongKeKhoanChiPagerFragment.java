@@ -25,6 +25,7 @@ import com.dung.quanlythuchi.adapter.ItemClickListener;
 import com.dung.quanlythuchi.adapter.ThongKeChiRecyclerViewApdater;
 import com.dung.quanlythuchi.dialog.KhoanChiDetailDialog;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -138,13 +139,17 @@ public class ThongKeKhoanChiPagerFragment extends Fragment {
                     thongKeChiViewModel.getAllTotalDateKhoanChi(toDateLong, fromDateLong).observe(getActivity(), new Observer<Float>() {
                         @Override
                         public void onChanged(Float aFloat) {
-                            if (aFloat == null) {
-                                edTotalChi.setText("không có khoản tiền chi");
-                            }else {
-                                edTotalChi.setText(String.valueOf(aFloat));
+                          try {
+                              DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+                              edTotalChi.setText(decimalFormat.format(aFloat));
+                          }catch (IllegalArgumentException e){
+                              e.printStackTrace();
+                              edTotalChi.setText("không có khoản tiền chi");
+                          }
+
                             }
 
-                        }
+
                     });
                     thongKeChiRecyclerViewApdater = new ThongKeChiRecyclerViewApdater(getActivity());
                     rvChi.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dung.quanlythuchi.DTO.KhoanChi;
 import com.dung.quanlythuchi.R;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -43,7 +44,8 @@ public class ThongKeChiRecyclerViewApdater extends RecyclerView.Adapter<ThongKeC
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         if (this.khoanChiList != null) {
             holder.tvNameChi.setText(this.khoanChiList.get(position).getNameKC());
-            holder.tvPriceChi.setText(String.valueOf(this.khoanChiList.get(position).getTienKC()));
+            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+            holder.tvPriceChi.setText(decimalFormat.format(this.khoanChiList.get(position).getTienKC()));
             holder.tvDateChi.setText(simpleDateFormat.format(this.khoanChiList.get(position).getDateKC()));
             holder.position = position;
         }

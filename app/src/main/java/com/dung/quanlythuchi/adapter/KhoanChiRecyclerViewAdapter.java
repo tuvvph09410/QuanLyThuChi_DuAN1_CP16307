@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dung.quanlythuchi.DTO.KhoanChi;
 import com.dung.quanlythuchi.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class KhoanChiRecyclerViewAdapter extends RecyclerView.Adapter<KhoanChiRecyclerViewAdapter.KhoanChiViewHolder> {
@@ -52,7 +53,8 @@ public class KhoanChiRecyclerViewAdapter extends RecyclerView.Adapter<KhoanChiRe
     public void onBindViewHolder(@NonNull KhoanChiViewHolder holder, int position) {
         if (this.khoanChiList != null) {
             holder.tvNameKC.setText(this.khoanChiList.get(position).getNameKC());
-            holder.tvTienKC.setText(this.khoanChiList.get(position).getTienKC()+ " Đồng");
+            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+            holder.tvTienKC.setText(decimalFormat.format(this.khoanChiList.get(position).getTienKC())+ " Đồng");
             holder.position = position;
         }
     }

@@ -29,6 +29,7 @@ import com.dung.quanlythuchi.dialog.KhoanThuDetailDialog;
 import com.dung.quanlythuchi.dialog.KhoanThuDiaLog;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
@@ -159,11 +160,16 @@ public class ThongkeKhoanThuPagerFragment extends Fragment {
                         @Override
                         public void onChanged(Float floats) {
 
-                            if (floats == null) {
-                                edTotalThu.setText("không có khoản tiền thu");
-                            } else {
-                                edTotalThu.setText(String.valueOf(floats));
-                            }
+
+                                try {
+                                    DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+                                    edTotalThu.setText(decimalFormat.format(floats));
+                                }catch (IllegalArgumentException e){
+                                    e.printStackTrace();
+                                    edTotalThu.setText("không có khoản tiền thu");
+                                }
+
+
 
 
                         }

@@ -21,6 +21,7 @@ import com.dung.quanlythuchi.adapter.LoaiChiSpinnerAdapter;
 import com.dung.quanlythuchi.fragment.KhoanChiViewModel;
 import com.dung.quanlythuchi.fragment.LoaiChiViewModel;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -51,7 +52,8 @@ public class KhoanChiDetailDialog {
 
         tvIdKC.setText("ID khoản chi: " + khoanChi[0].getIdKC());
         tvNameKC.setText("Tên khoản chi: " + khoanChi[0].getNameKC());
-        tvAmountKC.setText("Tiền khoản chi: " + khoanChi[0].getTienKC());
+        DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+        tvAmountKC.setText("Tiền khoản chi: " +decimalFormat.format(khoanChi[0].getTienKC()));
         tvDateKC.setText("Ngày khoản chi: " + simpleDateFormat.format(khoanChi[0].getDateKC()));
         tvNoteKC.setText("Ghi Chú khoản chi: " + khoanChi[0].getNoteKC());
 

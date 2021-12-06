@@ -28,6 +28,7 @@ import com.dung.quanlythuchi.adapter.LoaiChiSpinnerAdapter;
 import com.dung.quanlythuchi.fragment.KhoanChiViewModel;
 import com.dung.quanlythuchi.fragment.LoaiChiViewModel;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -101,7 +102,8 @@ public class KhoanChiDiaLog {
         if (khoanChi != null && khoanChi.length > 0) {
             tv_idKC.setText(String.valueOf(khoanChi[0].getIdKC()));
             ed_nameKC.setText(khoanChi[0].getNameKC());
-            ed_amountKC.setText(String.valueOf(khoanChi[0].getTienKC()));
+            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+            ed_amountKC.setText(decimalFormat.format(String.valueOf(khoanChi[0].getTienKC())));
             ed_dateKC.setText(simpleDateFormat.format(khoanChi[0].getDateKC()));
             ed_noteKC.setText(khoanChi[0].getNoteKC());
 

@@ -24,6 +24,7 @@ import com.dung.quanlythuchi.fragment.KhoanChiViewModel;
 import com.dung.quanlythuchi.fragment.KhoanThuViewModel;
 import com.dung.quanlythuchi.fragment.LoaiChiViewModel;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -55,7 +56,8 @@ public class KhoanThuDetailDialog {
 
         tvIdKT.setText("ID khoản thu: " + khoanThu[0].getIdKT());
         tvNameKT.setText("Tên khoản thu: " + khoanThu[0].getNameKT());
-        tvAmountKT.setText("Tiền khoản thu: " + khoanThu[0].getTienKT());
+        DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+        tvAmountKT.setText("Tiền khoản thu: " +decimalFormat.format( khoanThu[0].getTienKT()));
         tvDateKT.setText("Ngày khoản thu: " + simpleDateFormat.format(khoanThu[0].getDateKT()));
         tvNoteKT.setText("Ghi Chú khoản thu: " + khoanThu[0].getNoteKT());
 
