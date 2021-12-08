@@ -98,19 +98,14 @@ public class KhoanThuDiaLog {
         if (khoanThu != null && khoanThu.length > 0) {
             tv_idKT.setText("" + khoanThu[0].getIdKT());
             ed_nameKT.setText(khoanThu[0].getNameKT());
-            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+            DecimalFormat decimalFormat = new DecimalFormat("#########");
             ed_amountKT.setText("" + decimalFormat.format(khoanThu[0].getTienKT()));
 
             ed_dateKT.setText(simpleDateFormat.format(khoanThu[0].getDateKT()));
             ed_noteKT.setText(khoanThu[0].getNoteKT());
 
 
-            if ("" + khoanThu[0].getLtID() != null) {
-                int spPosition = (int) spinnerAdapterThu.getItemId(khoanThu[0].getLtID() - 1);
-
-                sp_typeIDLT.setSelection(spPosition);
-
-            }
+            sp_typeIDLT.setSelection(0);
 
 
             EditModeThu = true;

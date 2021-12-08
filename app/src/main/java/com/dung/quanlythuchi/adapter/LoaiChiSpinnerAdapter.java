@@ -1,6 +1,7 @@
 package com.dung.quanlythuchi.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,12 @@ public class LoaiChiSpinnerAdapter extends BaseAdapter {
 
     public LoaiChiSpinnerAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
+
+    }
+
+    public void setLoaiChiList(List<LoaiChi> loaiChiList) {
+        LoaiChiList = loaiChiList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,18 +46,16 @@ public class LoaiChiSpinnerAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
-    }
-
-    public void setLoaiChiList(List<LoaiChi> LoaiChiList) {
-        this.LoaiChiList = LoaiChiList;
-        notifyDataSetChanged();
+        LoaiChi loaiChi=this.LoaiChiList.get(position);
+        return loaiChi.getIdLC();
     }
 
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
+
         LoaiChiSpinnerViewHolder holder;
+        LoaiChi loaiChi = this.LoaiChiList.get(position);
         if (view == null) {
             view = layoutInflater.inflate(R.layout.spinner_khoanchi_item, null, false);
             holder = new LoaiChiSpinnerViewHolder(view);
@@ -59,7 +64,8 @@ public class LoaiChiSpinnerAdapter extends BaseAdapter {
         } else {
             holder = (LoaiChiSpinnerViewHolder) view.getTag();
         }
-        holder.tv_spinnerIDLC.setText(LoaiChiList.get(position).getNameLC());
+
+        holder.tv_spinnerIDLC.setText(loaiChi.getNameLC());
         return view;
     }
 

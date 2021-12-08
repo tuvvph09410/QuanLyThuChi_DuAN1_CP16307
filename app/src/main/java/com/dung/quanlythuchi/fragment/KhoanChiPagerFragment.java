@@ -114,6 +114,7 @@ public class KhoanChiPagerFragment extends Fragment {
         this.chiRecyclerViewAdapter.setOnItemUpdateClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
                 KhoanChi khoanChi = chiRecyclerViewAdapter.getItem(position);
                 KhoanChiDiaLog khoanChiDiaLog = new KhoanChiDiaLog(getActivity(), khoanChi);
 
@@ -132,8 +133,10 @@ public class KhoanChiPagerFragment extends Fragment {
 
         this.floatingActionButton = view.findViewById(R.id.floatingActionButtonKhoanChi);
         this.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 KhoanChiDiaLog khoanChiDiaLog = new KhoanChiDiaLog(getActivity());
                 khoanChiDiaLog.showDialog();
             }

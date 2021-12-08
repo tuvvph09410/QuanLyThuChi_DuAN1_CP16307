@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -52,6 +53,7 @@ public class KhoanChiDiaLog {
     public KhoanChiDiaLog(Context context, KhoanChi... khoanChi) {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.khoan_chi_dialog, null);
+
         this.khoanChiViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(KhoanChiViewModel.class);
 
         this.ed_nameKC = view.findViewById(R.id.ed_nameKC);
@@ -93,25 +95,24 @@ public class KhoanChiDiaLog {
         khoanChiViewModel.getAllLoaiChi().observe((LifecycleOwner) context, new Observer<List<LoaiChi>>() {
             @Override
             public void onChanged(List<LoaiChi> loaiChis) {
+
                 spinnerAdapter.setLoaiChiList(loaiChis);
 
             }
+
         });
         sp_typeIDLC.setAdapter(spinnerAdapter);
 
         if (khoanChi != null && khoanChi.length > 0) {
             tv_idKC.setText(String.valueOf(khoanChi[0].getIdKC()));
             ed_nameKC.setText(khoanChi[0].getNameKC());
-            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
-            ed_amountKC.setText(decimalFormat.format(String.valueOf(khoanChi[0].getTienKC())));
+            DecimalFormat decimalFormat = new DecimalFormat("#########");
+            ed_amountKC.setText(decimalFormat.format(khoanChi[0].getTienKC()));
             ed_dateKC.setText(simpleDateFormat.format(khoanChi[0].getDateKC()));
             ed_noteKC.setText(khoanChi[0].getNoteKC());
 
-            if (String.valueOf(khoanChi[0].getLcID()) != null) {
-                int spPosition = (int) spinnerAdapter.getItemId(khoanChi[0].getLcID() - 1);
-                sp_typeIDLC.setSelection(spPosition);
+            sp_typeIDLC.setSelection(0);
 
-            }
 
 
             EditMode = true;
