@@ -147,7 +147,9 @@ public class KhoanThuPagerFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //tạo ra viewModel
         this.khoanThuViewModel = new ViewModelProvider(this).get(KhoanThuViewModel.class);
+        //quan sát dư liệu thay đổi và cập nhật lên recyclerView
         this.khoanThuViewModel.getAllKhoanThu().observe(getActivity(), new Observer<List<KhoanThu>>() {
             @Override
             public void onChanged(List<KhoanThu> khoanThus) {

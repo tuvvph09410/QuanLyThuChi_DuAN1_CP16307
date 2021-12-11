@@ -19,17 +19,20 @@ import java.util.List;
 
 public class KhoanThuRepository {
     private KhoanThuDAO khoanThuDAO;
+    //livedata là bộ lưu giữ dữ liệu có thể quan sát được ( observable data holder)
+    //livedata cảnh báo khi dữ liệu thay đổi trên giao diện người dùng cập nhật
     private LiveData<List<KhoanThu>> mAllKhoanThu;
 
     public KhoanThuRepository(Application application) {
         this.khoanThuDAO = AppDatabaseThu.getDatabaseThu(application).khoanThuDAO();
         this.mAllKhoanThu = khoanThuDAO.findAll();
     }
-
+    //livedata trả về tất cả dự liệu có trong bảng
     public LiveData<List<KhoanThu>> getAllKhoanThu() {
         return this.mAllKhoanThu;
     }
 
+    //livedata trả về dự liệu tiền khi được đưa vào ngày thông kê
     public LiveData<Float> getAllAmountKhoanThu(Long toDate, Long fromDate) {
 
         return this.khoanThuDAO.getTotalAmountDateKhoanThu(toDate, fromDate);
@@ -45,6 +48,7 @@ public class KhoanThuRepository {
         return this.khoanThuDAO.getTotalThu();
     }
 
+
     public void insert(KhoanThu khoanThu) {
         new KhoanThuRepository.InsertAsyncTask(this.khoanThuDAO).execute(khoanThu);
     }
@@ -56,7 +60,7 @@ public class KhoanThuRepository {
     public void delete(KhoanThu khoanThu) {
         new KhoanThuRepository.DeleteAsyncTask(this.khoanThuDAO).execute(khoanThu);
     }
-
+    //thực hiện class bất đồng bộ để gọi phương thức insert để thêm vào database
     class InsertAsyncTask extends AsyncTask<KhoanThu, Void, Void> {
         private KhoanThuDAO khoanThuDAO;
 

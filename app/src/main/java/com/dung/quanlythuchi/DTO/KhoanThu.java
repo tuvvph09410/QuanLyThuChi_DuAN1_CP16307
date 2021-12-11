@@ -11,10 +11,10 @@ import java.util.Date;
 
 @Entity
 public class KhoanThu {
-
+    //trường id là khoá chính và tự tăng;
     @PrimaryKey(autoGenerate = true)
     private int idKT;
-
+    //định nghĩa tên của trường;
     @ColumnInfo(name = "lTID")
     private int ltID;
 
@@ -25,6 +25,7 @@ public class KhoanThu {
     private Double tienKT;
 
     @ColumnInfo(name = "dateKT")
+    //được sử dụng chuyển đổi các kiểu tuỳ chỉnh thành các kiểu hộ trợ bở Database
     @TypeConverters({DateTyperConvertor.class})
     private Date dateKT;
     

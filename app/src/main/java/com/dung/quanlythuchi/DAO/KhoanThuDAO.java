@@ -18,6 +18,7 @@ import java.util.Queue;
 
 @Dao
 public interface KhoanThuDAO {
+    //LiveData: để kết nối dự liệu với giao diện UI, chúng ta cần phải dùng LiveData
     @Query("SELECT * FROM khoanthu")
     LiveData<List<KhoanThu>> findAll();
 

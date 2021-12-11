@@ -19,16 +19,16 @@ import com.dung.quanlythuchi.DTO.KhoanThu;
 import com.dung.quanlythuchi.DTO.LoaiThu;
 
 import java.util.Date;
-
+//entities gồm có các bảng và đang ở version mấy
 @Database(entities = {LoaiThu.class, KhoanThu.class}, version = 3)
 public abstract class AppDatabaseThu extends RoomDatabase {
     public abstract LoaiThuDAO loaiThuDAO();
-
     public abstract KhoanThuDAO khoanThuDAO();
 
     public static AppDatabaseThu INSTANCE;
     private static RoomDatabase.Callback callback = new Callback() {
         @Override
+        //OnCreate database đã được tạo
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
             new PopulateData(INSTANCE).execute();
@@ -36,10 +36,13 @@ public abstract class AppDatabaseThu extends RoomDatabase {
     };
 
     public static AppDatabaseThu getDatabaseThu(final Context context) {
+        //nếu instance mà null thì tạo database
+        // còn không null thì trả về giá trị instance;
         if (INSTANCE == null) {
             synchronized (AppDatabaseThu.class) {
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabaseThu.class, "QLThu_DB")
                         .fallbackToDestructiveMigration()
+                        //gọi hàm callback để tạo database
                         .addCallback(callback)
                         .build();
             }
@@ -56,6 +59,7 @@ public abstract class AppDatabaseThu extends RoomDatabase {
             khoanThuDAO=database.khoanThuDAO();
         }
 
+        //tạo 1 bản ghi mới
         @Override
         protected Void doInBackground(Void... voids) {
 //            String[] loaichis = new String[]{"Mua quần áo"};
